@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      .bg-blue {
+        background-color: #3d3bf3;
+      }
+      .text-white1 {
+        color: #ebeaff;
+      }
+      .bg-pink {
+        color: #9694ff;
+      }
+      .bg-red {
+        background-color: #ff2929;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="w-full py-3 flex items-center justify-center bg-blue sticky top-0 left-0 z-20"
+    >
+      <div class="w-full px-2 lg:p-0 lg:w-[80%] max-w-[1600px] lg:m-auto">
+        <div class="flex items-center">
+          <div
+            class="lg:size-14 size-9 rounded-full flex items-center justify-center overflow-hidden"
+          >
+            <img
+              class="w-full h-full"
+              src="https://play-lh.googleusercontent.com/oRfGPvu132cuyKZXG9Z-OoWr-OlN7VFBIw60vvkBQ2Gzv4V4VdtvpwEISJ1rv9ZzTVI"
+              alt="Logo"
+            />
+          </div>
+          <h1 class="text-2xl lg:text-4xl ml-3 font-bold font-mono text-white1">
+            <span class="text-red">P</span>ower<span class="text-red">H</span
+            >ealthy
+          </h1>
+        </div>
+      </div>
+    </nav>
+
+    <section class="w-full h-screen flex items-center justify-center bg-white">
+      <div
+        class="lg:w-[80%] w-full max-w-[1600px] h-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 mt-5 gap-5 xl:gap-0"
+      >
+        <div
+          id="bmiForm"
+          class="h-[600px] shadow-lg lg:border lg:mt-5 bg-white col-span-1 p-6 rounded-lg gap-10 flex flex-col"
+        >
+          <div
+            class="w-full flex items-center justify-center bg-white1 p-3 sm:bg-white sm:p-0"
+          >
+            <span class="font-sans font-bold text-lg sm:text-2xl lg:text-4xl"
+              >BMI Calculator</span
+            >
+          </div>
+          <div class="grid grid-cols-1 gap-5">
+            <div class="flex lg:items-center items-end gap-5">
+              <div>
+                <label for="age" class="text-lg lg:text-xl block mb-2"
+                  >Age</label
+                >
+                <input
+                  type="number"
+                  id="age"
+                  placeholder="Enter your age"
+                  class="p-2 rounded-lg bg-gray-100 outline-none w-full border"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="height" class="text-lg block mb-2">Height (Cm)</label>
+              <input
+                type="number"
+                id="height"
+                placeholder="Enter height"
+                class="p-2 rounded-lg bg-gray-100 outline-none w-full border"
+              />
+            </div>
+            <div>
+              <label for="weight" class="text-lg block mb-2">Weight (Kg)</label>
+              <input
+                type="number"
+                id="weight"
+                placeholder="Enter weight"
+                class="p-2 rounded-lg bg-gray-100 outline-none w-full border"
+              />
+            </div>
+            <div class="block lg:flex items-end justify-end gap-3 mt-3">
+              <label class="text-lg block">Gender</label>
+              <div class="flex items-center gap-5 mt-2 lg:mt-0">
+                <div class="flex items-center gap-4">
+                  <input
+                    id="male"
+                    name="gender"
+                    type="radio"
+                    value="male"
+                    class="p-2 bg-gray-100 outline-none shadow-sm size-5 cursor-pointer"
+                  />
+                  <label for="male" class="text-lg block">Male</label>
+                </div>
+                <div class="flex items-center gap-4">
+                  <input
+                    id="female"
+                    name="gender"
+                    type="radio"
+                    value="female"
+                    class="p-2 bg-gray-100 outline-none shadow-sm size-5 cursor-pointer"
+                  />
+                  <label for="female" class="text-lg block">Female</label>
+                </div>
+              </div>
+            </div>
+            <div class="w-full flex gap-3 items-center lg:mt-10">
+              <button
+                id="btnCal"
+                onclick="cal()"
+                class="w-full rounded-xl active:scale-105 bg-blue hover:shadow-lg shadow-blue duration-200 ease-in font-sans font-semibold text-white text-lg mt-3 p-2 text-center"
+              >
+                Calculate
+              </button>
+
+              <button
+                onclick="clearForm()"
+                type="button"
+                id="clearButton"
+                class="w-full rounded-xl border hover:shadow-lg duration-200 ease-in font-sans font-semibold text-black text-lg mt-3 p-2 text-center"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="2xl:col-span-2 h-full text-center text-xl font-bold mt-5">
+          <div
+            class="min-h-[600px] max-h-[800px] overflow-auto flex p-6 flex-col m-auto col-span-2 lg:border-x ml-5"
+          >
+            <div class="lg:min-h-96 min-h-52 border-b w-full">
+              <h1
+                class="font-bold font-sans text-lg lg:text-2xl w-full h-16 p-4 border bg-white1 text-black rounded-sm text-center"
+              >
+                Result
+              </h1>
+
+              <div id="result" class="flex gap-4 mt-5 w-full"></div>
+            </div>
+
+            <div class="flex flex-col w-full font-[Khmer] font-nomorl">
+              <p class="lg:text-lg">
+                ការគណនាសន្ទស្សន៍ម៉ាសរាងកាយ (BMI) អាចត្រូវបានប្រើដើម្បីគណនាតម្លៃ
+                BMI និងស្ថានភាពទម្ងន់ដែលត្រូវគ្នា ខណៈពេលដែលគិតគូរពីអាយុ។
+                ប្រើផ្ទាំង "ឯកតាម៉ែត្រ" សម្រាប់ប្រព័ន្ធអន្តរជាតិនៃឯកតា ឬផ្ទាំង
+                "ឯកតាផ្សេងទៀត" ដើម្បីបំប្លែងឯកតាទៅជាសហរដ្ឋអាមេរិក ឬឯកតាម៉ែត្រ។
+                ចំណាំថាម៉ាស៊ីនគិតលេខក៏គណនាសន្ទស្សន៍ Ponderal បន្ថែមលើ BMI
+                ដែលទាំងពីរនេះត្រូវបានពិភាក្សាលម្អិតខាងក្រោម។
+              </p>
+              <h1 class="text-lg mt-10 lg:text-3xl font-bold">
+                ការណែនាំអំពី BMI
+              </h1>
+              <p class="mt-3 lg:text-lg">
+                BMI
+                គឺជា​ការ​វាស់​ស្ទង់​ពី​ភាព​គ្មាន​ខ្លាញ់​របស់​មនុស្ស​ម្នាក់​ដោយ​ផ្អែក​លើ​កម្ពស់
+                និង​ទម្ងន់​របស់​ពួកគេ ហើយ​មាន​គោលបំណង​កំណត់​បរិមាណ​ជាលិកា។
+                វាត្រូវបានគេប្រើយ៉ាងទូលំទូលាយជាសូចនាករទូទៅនៃថាតើមនុស្សម្នាក់មានទម្ងន់រាងកាយដែលមានសុខភាពល្អសម្រាប់កម្ពស់របស់ពួកគេ។
+                ជាពិសេស តម្លៃដែលទទួលបានពីការគណនា BMI
+                ត្រូវបានប្រើដើម្បីចាត់ថ្នាក់ថាតើមនុស្សម្នាក់មានទម្ងន់មិនគ្រប់
+                ទម្ងន់ធម្មតា លើសទម្ងន់ ឬធាត់ អាស្រ័យលើតម្លៃដែលស្ថិតនៅចន្លោះនោះ។
+                ជួរនៃ BMI ទាំងនេះប្រែប្រួលអាស្រ័យលើកត្តាដូចជាតំបន់ និងអាយុ
+                ហើយជួនកាលត្រូវបានបែងចែកបន្ថែមទៀតទៅជាប្រភេទរងដូចជា ទម្ងន់មិនគ្រប់
+                ឬធាត់ខ្លាំង។ ការលើសទម្ងន់
+                ឬទម្ងន់មិនគ្រប់អាចជះឥទ្ធិពលយ៉ាងខ្លាំងដល់សុខភាព ដូច្នេះខណៈពេលដែល
+                BMI គឺជារង្វាស់មិនល្អឥតខ្ចោះនៃទម្ងន់រាងកាយដែលមានសុខភាពល្អ
+                វាគឺជាសូចនាករដ៏មានប្រយោជន៍ថាតើការធ្វើតេស្ត
+                ឬសកម្មភាពណាមួយត្រូវបានទាមទារ។
+                សូមមើលតារាងខាងក្រោមដើម្បីមើលប្រភេទផ្សេងៗដោយផ្អែកលើ BMI
+                ដែលប្រើដោយម៉ាស៊ីនគិតលេខ។
+              </p>
+            </div>
+
+            <div class="w-full mt-10 font-[Khmer]">
+              <h1 class="text-lg lg:text-3xl font-bold">
+                របៀបប្រើ BMI Calculator
+              </h1>
+              <div class="w-full mt-5">
+                <p class="lg:text-lg">
+                  ដើម្បីប្រើ BMI Calculator នេះបានយើងត្រូវដឹងចំណុចខ្លះៗជាមុនសិន
+                </p>
+                <div class="relative w-full">
+                  <!-- <img
+                    class="hidden lg:block"
+                    src="../../../..//public/img/Screenshot 2024-11-26 193506.png"
+                    alt=""
+                  />
+                  <div class="hidden lg:block relative">
+                    <span
+                      class="absolute left-[140px] -bottom-10 flex items-center justify-center size-10 rounded-full bg-white1"
+                      >1</span
+                    >
+                    <span
+                      class="absolute right-[240px] bottom-10 flex items-center justify-center size-10 rounded-full bg-white1"
+                      >2</span
+                    >
+                  </div> -->
+                  <div class="mt-20 w-full grid grid-cols-1 lg:grid-cols-2">
+                    <div class="flex-1">
+                      <!-- <div class="relative lg:hidden block">
+                        <img
+                          src="../../../..//public/img/Screenshot 2024-11-26 195653.png"
+                          class="w-full my-14"
+                          alt=""
+                        />
+                        <span
+                          class="absolute left-1/2 -bottom-11 -translate-x-1/2 flex items-center justify-center size-7 rounded-full bg-white1"
+                          >1</span
+                        >
+                      </div> -->
+                      <h1 class="text-lg lg:text-xl font-bold">
+                        នៅត្រង់ចំណុចទី1 យើងប្រើដើម្បីៈ
+                      </h1>
+                      <ul class="w-full list-disc px-10 mt-3 space-y-3">
+                        <li>បញ្ចូលអាយុ</li>
+                        <li>បញ្ចូលកម្ពស់</li>
+                        <li>បញ្ចូលទម្ងន់</li>
+                        <li>បញ្ចូលភេទ</li>
+                        <li>
+                          ប៊ូតុងពណ៏ខៀវ
+                          <span
+                            class="size-2 rounded-full bg-blue shadow-lg inline-block"
+                          ></span>
+                          ជាប៊ូតុងសម្រាប់ធ្វើការគណនារាល់ទិន្នន័យដែលបានបញ្ចូល
+                        </li>
+                        <li>
+                          ប៊ូតុងពណ៏ស
+                          <span
+                            class="size-2 rounded-full bg-white1 shadow-lg border inline-block"
+                          ></span>
+                          ជាប៊ូតុងសម្រាប់ធ្វើការលុបរាល់ទិន្នន័យដែលមាននៅក្នុង
+                          Input field
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="flex-1 mt-5 lg:mt-0">
+                      <h1 class="text-lg lg:text-xl font-bold">
+                        នៅត្រង់ចំណុចទី2 យើងប្រើដើម្បីៈ
+                      </h1>
+                      <ul class="w-full list-disc px-10 mt-3 space-y-3">
+                        <li>
+                          មើលចម្លើយនៅពេលដែលអ្នកបានបញ្ចុលរាល់ទិន្នន័យដែលមាននៅក្នុងចំណុចទី1
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+
+      function cal() {
+        let result = document.getElementById("result");
+      let age = parseFloat(document.getElementById("age").value);
+      let height = parseFloat(document.getElementById("height").value);
+      let weight = parseFloat(document.getElementById("weight").value);
+      let gender = document.querySelector("input[name='gender']:checked");
+        console.log("Hell");
+        console.log(result);
+
+        if (!age || !height || !weight || !gender) {
+          alert("សូមបំពេញឲ្យគ្រប់ចន្លោះ");
+          return;
+        }
+
+        const heightInMeters = height / 100;
+        const bmi = weight / (heightInMeters * heightInMeters);
+        let bmiCategory = "";
+
+        if (bmi < 18.5) {
+          bmiCategory = "ទម្ងន់តិចពេក"; // Underweight
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+          bmiCategory = "ធម្មតា"; // Normal
+        } else if (bmi >= 25 && bmi < 29.9) {
+          bmiCategory = "លើសទម្ងន់"; // Overweight
+        } else {
+          bmiCategory = "ធាត់"; // Obese
+        }
+
+        const resultHTML = `
+                        <h3 class="lg:text-2xl font-bold font-sans">
+                  BMI=
+                  <span
+                    >${bmi.toFixed(1)}kg/m<sup
+                      >2</sup
+                    ></span
+                  >
+                  <span
+                    
+          }"
+                    class="ml-4 font-[Khmer]"
+                    >${bmiCategory}</span
+                  >
+                </h3>
+      `;
+        result.innerHTML = resultHTML;
+      }
+
+      const clearForm = () => {
+        console.log("hello")
+        let result = document.getElementById("result");
+      let age = document.getElementById("age")
+      let height = document.getElementById("height")
+      let weight = document.getElementById("weight")
+      let gender = document.querySelector("input[name='gender']")
+      
+        result.innerHTML = "";
+        age.value = "";
+        height.value = "";
+        weight.value = "";
+      };
+
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   const clearButton = document.getElementById("clearButton");
+      //   clearButton.addEventListener("click", clearForm);
+      // });
+    </script>
+  </body>
+</html>
